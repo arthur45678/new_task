@@ -1,0 +1,80 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "My API Docs",
+        "contact": {
+            "email": "your@email.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Локальный сервер API"
+        }
+    ],
+    "paths": {
+        "/api/prices": {
+            "get": {
+                "tags": [
+                    "Prices"
+                ],
+                "summary": "Получить список продуктов с ценами",
+                "description": "Возвращает список товаров с ценой в нужной валюте (RUB, USD, EUR)",
+                "operationId": "getPrices",
+                "parameters": [
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Валюта отображения цен (по умолчанию RUB)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "RUB",
+                                "USD",
+                                "EUR"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "iPhone 15"
+                                            },
+                                            "price": {
+                                                "type": "string",
+                                                "example": "$999.99"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Prices",
+            "description": "Prices"
+        }
+    ]
+}
